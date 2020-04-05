@@ -2,14 +2,16 @@ import { Client, Expr, ExprArg, query as fauna } from 'faunadb';
 
 export type RefID = string | number;
 
-export type WithRef<T> = {
-  ref: {
-    value: {
-      id: RefID;
-      collection: string;
-      ts: number;
-    };
+type Ref = {
+  value: {
+    id: RefID;
+    collection: string;
+    ts: number;
   };
+};
+
+export type WithRef<T> = {
+  ref: Ref;
   data: T;
 };
 
@@ -34,12 +36,42 @@ export function getAllByIndex(index: string) {
   );
 }
 
+export function refInCollection(ref: RefID, collection: string) {
+  return fauna.Ref(fauna.Collection(collection), ref);
+}
+
+export function createInCollection(collection: string, data: any) {
+  return fauna.Create(fauna.Collection(collection), {
+    data,
+  });
+}
+
 export function getInCollectionByRef(collection: string, ref: RefID) {
-  return fauna.Get(fauna.Ref(fauna.Collection(collection), ref));
+  return fauna.Get(refInCollection(ref, collection));
 }
 
 export function deleteInCollectionByRef(collection: string, ref: RefID) {
-  return fauna.Delete(fauna.Ref(fauna.Collection(collection), ref));
+  return fauna.Delete(refInCollection(ref, collection));
+}
+
+export function updateInCollectionByRef(
+  collection: string,
+  ref: RefID,
+  data: any
+) {
+  return fauna.Update(refInCollection(ref, collection), {
+    data,
+  });
+}
+
+export function replaceInCollectionByRef(
+  collection: string,
+  ref: RefID,
+  data: any
+) {
+  return fauna.Replace(refInCollection(ref, collection), {
+    data,
+  });
 }
 
 export function createCaller(client: Client) {
