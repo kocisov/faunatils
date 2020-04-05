@@ -43,7 +43,9 @@ export function deleteInCollectionByRef(collection: string, ref: RefID) {
 }
 
 export function createCaller(client: Client) {
-  return async function call<T>(expression: Expr) {
+  return async function call<T>(
+    expression: Expr
+  ): Promise<[Error | null, T | null]> {
     let [error, response]: [Error | null, T | null] = [null, null];
     try {
       response = await client.query<T>(expression);
