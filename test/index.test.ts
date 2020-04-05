@@ -1,4 +1,13 @@
-import { getIdFromRef, payloadWithId } from '../src';
+import {
+  getIdFromRef,
+  payloadWithId,
+  createClient,
+  createCaller,
+  getByIndex,
+} from '../src';
+
+const unauthorizedClient = createClient('');
+const unauthorizedCall = createCaller(unauthorizedClient);
 
 const item = {
   ref: {
@@ -23,5 +32,10 @@ describe('faunatils', () => {
       id: 'string id',
       colorful: true,
     });
+  });
+
+  it('failed without secret', async () => {
+    const [err] = await unauthorizedCall(getByIndex('all_items'));
+    expect(err?.message).toEqual('unauthorized');
   });
 });
