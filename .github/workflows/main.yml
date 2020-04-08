@@ -35,10 +35,9 @@ jobs:
         run: yarn test --ci --coverage --maxWorkers=2
         env:
           CI: true
+          FAUNA_KEY: ${{secrets.FAUNA_KEY}}
 
       - name: Build
-        env:
-          FAUNA_KEY: ${{secrets.FAUNA_KEY}}
         run: yarn build
         env:
           CI: true
