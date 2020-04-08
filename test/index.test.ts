@@ -13,6 +13,7 @@ import {
   getInCollectionByRef,
   updateInCollectionByRef,
   createIndex,
+  replaceInCollectionByRef,
 } from '../src';
 
 const unauthorizedClient = createClient('');
@@ -128,6 +129,14 @@ describe('faunatils', () => {
     toBeDeleted = getIdFromRef(response);
     expect(err).toBe(null);
     expect(response.data.email).toBe('random@test.com');
+  });
+  it('replaces document data', async () => {
+    const [err] = await call<any>(
+      replaceInCollectionByRef('users', toBeDeleted, {
+        cool: false,
+      })
+    );
+    expect(err).toBe(null);
   });
 
   it('deletes newly created document', async () => {
