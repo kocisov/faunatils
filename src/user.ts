@@ -35,6 +35,16 @@ export function updatePasswordInIndex(
   });
 }
 
+export function updateUserInIndex(
+  index: string,
+  value: string | number,
+  data: any
+) {
+  return fauna.Update(fauna.Match(fauna.Index(index), value), {
+    data,
+  });
+}
+
 export function logoutUser() {
-  return fauna.Logout(true);
+  return fauna.Logout(false);
 }

@@ -15,6 +15,10 @@ export type WithRef<T> = {
   data: T;
 };
 
+export function createClient(secret: string) {
+  return new Client({ secret });
+}
+
 export function getIdFromRef<T>(item: WithRef<T>) {
   return item.ref.value.id;
 }
@@ -24,6 +28,14 @@ export function payloadWithId<T>(item: WithRef<T>) {
     id: getIdFromRef(item),
     ...item.data,
   };
+}
+
+export function updateAllInCollection(collection: string, data: any) {
+  return fauna.Map(fauna.Collection(collection), (ref) =>
+    fauna.Update(fauna.Get(ref), {
+      data,
+    })
+  );
 }
 
 export function getByIndex(index: string, ...terms: ExprArg[]) {
@@ -88,6 +100,5 @@ export function createCaller(client: Client) {
   };
 }
 
-export function createClient(secret: string) {
-  return new Client({ secret });
-}
+export { fauna as f };
+export * from './user';
