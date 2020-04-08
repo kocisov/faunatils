@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "author": "Ondřej Kocián",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "faunadb": "^2.13.1"
   },
   "devDependencies": {
@@ -42,5 +43,10 @@
     "start": "tsdx watch",
     "test": "tsdx test"
   },
-  "typings": "dist/index.d.ts"
+  "typings": "dist/index.d.ts",
+  "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ]
+  }
 }

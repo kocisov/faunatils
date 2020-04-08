@@ -37,6 +37,8 @@ jobs:
           CI: true
 
       - name: Build
+        env:
+          FAUNA_KEY: ${{secrets.FAUNA_KEY}}
         run: yarn build
         env:
           CI: true
