@@ -1,5 +1,5 @@
 import { Client, Expr, query as fauna } from 'faunadb';
-import { WithRef } from './types';
+import { WithRef } from 'types';
 
 export function createClient(secret: string) {
   return new Client({ secret });
@@ -12,8 +12,8 @@ export function createCaller(client: Client) {
     let [error, response]: [Error | null, T | null] = [null, null];
     try {
       response = await client.query<T>(expression);
-    } catch (_error) {
-      error = _error;
+    } catch (err) {
+      error = err;
     }
     return [error, response];
   };

@@ -4,13 +4,13 @@
   "author": "Ondřej Kocián",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "faunadb": "^2.13.1"
+    "faunadb": "^2.14.0"
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
-    "husky": "^4.2.3",
-    "tsdx": "^0.13.1",
-    "tslib": "^1.11.1",
+    "husky": "^4.2.5",
+    "tsdx": "^0.13.2",
+    "tslib": "^1.11.2",
     "typescript": "^3.8.3"
   },
   "engines": {

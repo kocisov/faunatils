@@ -23,7 +23,7 @@ type Item = {
 };
 
 async function handler() {
-  let [error, item] = await call<WithRef<Item>>(
+  const [error, item] = await call<WithRef<Item>>(
     getByIndex('item_by_color', 'red')
   );
 
