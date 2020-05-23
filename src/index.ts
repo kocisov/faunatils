@@ -1,5 +1,5 @@
 import { Client, Expr, query as fauna } from 'faunadb';
-import { WithRef } from 'types';
+import { WithRef } from './types';
 
 export function createClient(secret: string) {
   return new Client({ secret });
@@ -32,7 +32,7 @@ export function payloadWithId<T>(item: WithRef<T>) {
 
 export { fauna as f };
 
+export * from './alt';
 export * from './collection';
 export * from './indexes';
-export * from './types';
 export * from './user';

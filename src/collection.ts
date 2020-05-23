@@ -1,5 +1,5 @@
 import { query as fauna } from 'faunadb';
-import { RefID } from 'types';
+import { RefID } from './types';
 
 export function refInCollection(ref: RefID, collection: string) {
   return fauna.Ref(fauna.Collection(collection), ref);

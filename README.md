@@ -1,4 +1,4 @@
-# Faunatils ![](https://github.com/kocisov/faunatils/workflows/CI/badge.svg?branch=master)
+# Faunatils ![GitHub CI](https://github.com/kocisov/faunatils/workflows/CI/badge.svg?branch=master)
 
 > FaunaDB Utils
 
