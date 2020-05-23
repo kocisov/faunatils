@@ -1,6 +1,6 @@
 {
   "name": "faunatils",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "Ondřej Kocián",
   "dependencies": {
     "dotenv": "^8.2.0",
