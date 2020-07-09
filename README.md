@@ -38,3 +38,26 @@ handler().then((response) => {
   console.log(response);
 });
 ```
+
+## `@canary`
+
+```ts
+import { faunatils } from 'faunatils';
+
+const db = faunatils('fauna secret*');
+
+db.[functions*]()
+```
+
+### Functions
+
+- `collections()`
+  - Gets all collections from your Database
+- `document(collection: string, refId: RefID)`
+  - Gets specific document from collection
+- `documents(collection: string)`
+  - Gets all documents from collection
+- `update(collection: string, refId: RefID, data)`
+  - Updates specific document in collection
+- `updateAll(collection: string, data)`
+  - Updates all documents in collection

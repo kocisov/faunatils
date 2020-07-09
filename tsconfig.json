@@ -1,8 +1,8 @@
 {
   "include": ["src", "types"],
   "compilerOptions": {
-    "module": "esnext",
-    "lib": ["dom", "esnext"],
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
@@ -12,7 +12,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "jsx": "react",
     "esModuleInterop": true
   }
