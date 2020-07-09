@@ -45,6 +45,6 @@ export function updateUserInIndex(
   });
 }
 
-export function logoutUser() {
-  return fauna.Logout(false);
+export function logoutUser(deleteTokens = false) {
+  return fauna.Logout(deleteTokens);
 }

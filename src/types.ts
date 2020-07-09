@@ -2,8 +2,8 @@ export type RefID = string | number;
 
 export type FaunaRef = {
   value: {
-    id: RefID;
     collection: string;
+    id: RefID;
     ts: number;
   };
 };
@@ -13,6 +13,8 @@ export type IndexTermOrValue = {
 };
 
 export type WithRef<T> = {
-  ref: FaunaRef;
   data: T;
+  ref: FaunaRef;
 };
+
+export type CallerReturnType<T> = [Error | null, T | null];

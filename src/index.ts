@@ -1,5 +1,5 @@
 import { Client, Expr, query as fauna } from 'faunadb';
-import { WithRef } from './types';
+import { WithRef, CallerReturnType } from './types';
 
 export function createClient(secret: string) {
   return new Client({ secret });
@@ -8,8 +8,8 @@ export function createClient(secret: string) {
 export function createCaller(client: Client) {
   return async function call<T>(
     expression: Expr
-  ): Promise<[Error | null, T | null]> {
-    let [error, response]: [Error | null, T | null] = [null, null];
+  ): Promise<CallerReturnType<T>> {
+    let [error, response]: CallerReturnType<T> = [null, null];
     try {
       response = await client.query<T>(expression);
     } catch (err) {
@@ -32,7 +32,8 @@ export function payloadWithId<T>(item: WithRef<T>) {
 
 export { fauna as f };
 
-export * from './alt';
 export * from './collection';
 export * from './indexes';
+export * from './next';
+export * from './types';
 export * from './user';
