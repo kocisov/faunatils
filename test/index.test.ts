@@ -55,7 +55,7 @@ describe('faunatils', () => {
 
   it('gets document by ref', async () => {
     const [err, response] = await call<any>(
-      getInCollectionByRef('users', '260632024662934018')
+      getInCollectionByRef('users', '270754044048310789')
     );
     expect(err).toBe(null);
     expect(response.data.email).toBe('fa@example.com');
@@ -63,7 +63,7 @@ describe('faunatils', () => {
 
   it('updates document by ref', async () => {
     const [err, response] = await call<any>(
-      updateInCollectionByRef('users', '260632024662934018', { cool: false })
+      updateInCollectionByRef('users', '270754044048310789', { cool: false })
     );
     expect(err).toBe(null);
     expect(response.data.cool).toBe(false);

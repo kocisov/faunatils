@@ -1,13 +1,34 @@
 import { Client, query as fauna, Expr } from 'faunadb';
-import { CallerReturnType, WithRef, RefID } from './types';
+import { CallerReturnType, WithRef, RefID, Database } from './types';
 
 export function faunatils(secret: string) {
   const client = new Client({ secret });
 
-  async function collections() {
-    return await client
-      .paginate(fauna.Collections())
-      .map((ref) => fauna.Get(ref));
+  async function collections(
+    database?: Database | undefined,
+    raw: boolean = false
+  ) {
+    const { data } = await client.query(
+      fauna.Paginate(fauna.Collections(database ?? undefined))
+    );
+    if (raw) {
+      return data;
+    }
+    return data.map((collection: any) => collection.value.id);
+  }
+
+  async function database(db: Database | string) {
+    return await client.query(
+      fauna.Get(fauna.Database(typeof db === 'string' ? db : db.value.id))
+    );
+  }
+
+  async function databases(raw: boolean = true) {
+    const { data } = await client.query(fauna.Paginate(fauna.Databases()));
+    if (raw) {
+      return data;
+    }
+    return data.map((database: Database) => database.value.id);
   }
 
   async function document<T = {}>(collection: string, refId: RefID) {
@@ -64,6 +85,8 @@ export function faunatils(secret: string) {
   return {
     client,
     collections,
+    database,
+    databases,
     document,
     documents,
     run,

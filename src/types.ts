@@ -18,3 +18,10 @@ export type WithRef<T> = {
 };
 
 export type CallerReturnType<T> = [Error | null, T | null];
+
+export type Database = {
+  value: {
+    id: string;
+    collection: any;
+  };
+};
