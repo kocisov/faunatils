@@ -1,6 +1,6 @@
 {
   "name": "faunatils",
-  "version": "0.1.6-canary.2",
+  "version": "0.1.6-canary.3",
   "author": "Ondřej Kocián",
   "dependencies": {
     "dotenv": "^8.2.0",
