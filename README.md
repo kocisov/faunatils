@@ -153,11 +153,11 @@ await client.call(getAllInCollection('items'));
 ```ts
 import { updateAllInCollection } from 'faunatils';
 
-const updateWithThisDataForEach = {
+const updateAllWithThisData = {
   outOfStock: true,
 };
 
-await client.call(updateAllInCollection('items', data));
+await client.call(updateAllInCollection('items', updateAllWithThisData));
 ```
 
 ## Types
@@ -185,4 +185,44 @@ import {
   Roles - FaunaDB Secret key roles (Admin, Server)
   CallerReturnType<T> - Type for Array destructing with client.call
 */
+```
+
+### Full export
+
+```ts
+import {
+  CallerReturnType,
+  Collection,
+  createCaller,
+  createClient,
+  createCollection,
+  createInCollection,
+  createIndex,
+  createUserInCollection,
+  Database,
+  deleteInCollectionByRef,
+  FaunaRef,
+  FaunatilsClientObject,
+  fQL,
+  getAllByIndex,
+  getAllInCollection,
+  getByIndex,
+  getIdFromRef,
+  getInCollectionByRef,
+  IndexTermOrValue,
+  KeyFromSecret,
+  loginUserInIndex,
+  logoutUser,
+  payloadWithId,
+  RefID,
+  refInCollection,
+  replaceInCollectionByRef,
+  ResponseFaunaRef,
+  Roles,
+  updateAllInCollection,
+  updateInCollectionByRef,
+  updatePasswordInIndex,
+  updateUserInIndex,
+  WithRef,
+} from 'faunatils';
 ```

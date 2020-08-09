@@ -36,7 +36,7 @@ export function createCaller(client: Client) {
 }
 
 export function getIdFromRef(item: any) {
-  return item.ref?.value?.id ?? item.ref['@ref']?.id;
+  return item.ref?.value?.id ?? item.ref['@ref']?.id ?? '';
 }
 
 export function payloadWithId<T>(item: WithRef<T>) {
