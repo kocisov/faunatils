@@ -1,9 +1,9 @@
 import { query as fauna } from 'faunadb';
 
-export function createUserInCollection(
+export function createUserInCollection<T>(
   collection: string,
   password: string,
-  data: any
+  data: T
 ) {
   return fauna.Create(fauna.Collection(collection), {
     credentials: {

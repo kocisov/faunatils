@@ -11,20 +11,19 @@ $ yarn add faunatils
 ## Usage
 
 ```ts
-import { createClient, createCaller, getByIndex, WithRef } from 'faunatils';
-
-const client = createClient('fauna secret*');
-const call = createCaller(client);
+import { createClient, getByIndex, WithRef } from 'faunatils';
 
 type Item = {
-  name: string;
   color: string;
+  name: string;
   price: number;
 };
 
 async function handler() {
-  const [error, item] = await call<WithRef<Item>>(
-    getByIndex('item_by_color', 'red')
+  const client = await createClient(process.env.FAUNA_KEY);
+
+  const [error, item] = await client.call<WithRef<Item>>(
+    getByIndex('itemByColor', 'red')
   );
 
   if (error) {
@@ -38,26 +37,3 @@ handler().then((response) => {
   console.log(response);
 });
 ```
-
-## `@canary`
-
-```ts
-import { faunatils } from 'faunatils';
-
-const db = faunatils('fauna secret*');
-
-db.[functions*]()
-```
-
-### Functions
-
-- `collections()`
-  - Gets all collections from your Database
-- `document(collection: string, refId: RefID)`
-  - Gets specific document from collection
-- `documents(collection: string)`
-  - Gets all documents from collection
-- `update(collection: string, refId: RefID, data)`
-  - Updates specific document in collection
-- `updateAll(collection: string, data)`
-  - Updates all documents in collection

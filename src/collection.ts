@@ -9,7 +9,7 @@ export function createCollection(name: string) {
   return fauna.CreateCollection({ name });
 }
 
-export function createInCollection(collection: string, data: any) {
+export function createInCollection<T>(collection: string, data: T) {
   return fauna.Create(fauna.Collection(collection), {
     data,
   });
@@ -30,27 +30,27 @@ export function deleteInCollectionByRef(collection: string, ref: RefID) {
   return fauna.Delete(refInCollection(ref, collection));
 }
 
-export function updateInCollectionByRef(
+export function updateInCollectionByRef<T>(
   collection: string,
   ref: RefID,
-  data: any
+  data: T
 ) {
   return fauna.Update(refInCollection(ref, collection), {
     data,
   });
 }
 
-export function replaceInCollectionByRef(
+export function replaceInCollectionByRef<T>(
   collection: string,
   ref: RefID,
-  data: any
+  data: T
 ) {
   return fauna.Replace(refInCollection(ref, collection), {
     data,
   });
 }
 
-export function updateAllInCollection(collection: string, data: any) {
+export function updateAllInCollection<T>(collection: string, data: T) {
   return fauna.Map(
     fauna.Paginate(fauna.Documents(fauna.Collection(collection))),
     fauna.Lambda(
