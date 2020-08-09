@@ -42,6 +42,7 @@ export type ResponseFaunaRef = {
   '@ref': {
     id: RefID;
     collection: Collection;
+    ts?: number;
   };
 };
 
