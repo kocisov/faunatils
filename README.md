@@ -187,7 +187,7 @@ import {
 */
 ```
 
-### Full export
+## Full export
 
 ```ts
 import {

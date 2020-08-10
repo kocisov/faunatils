@@ -66,10 +66,12 @@ export type WithRef<T> = {
 
 export type Roles = 'server' | 'admin';
 
-export type KeyFromSecret = WithRef<{
-  database: Database;
+export type KeyFromSecret = {
+  database?: Database;
   hashed_secret: string;
+  ref: FaunaRef;
   role: Roles;
-}>;
+  ts: number;
+};
 
 export type CallerReturnType<T> = [Error | null, T | null];
