@@ -1,12 +1,12 @@
-import { query as fauna } from 'faunadb';
-import { RefID } from './types';
+import {query as fauna} from "faunadb";
+import {RefID} from "./types";
 
 export function refInCollection(ref: RefID, collection: string) {
   return fauna.Ref(fauna.Collection(collection), ref);
 }
 
 export function createCollection(name: string) {
-  return fauna.CreateCollection({ name });
+  return fauna.CreateCollection({name});
 }
 
 export function createInCollection<T>(collection: string, data: T) {
@@ -18,7 +18,7 @@ export function createInCollection<T>(collection: string, data: T) {
 export function getAllInCollection(collection: string) {
   return fauna.Map(
     fauna.Paginate(fauna.Documents(fauna.Collection(collection))),
-    fauna.Lambda('ref', fauna.Get(fauna.Var('ref')))
+    fauna.Lambda("ref", fauna.Get(fauna.Var("ref")))
   );
 }
 
@@ -54,8 +54,8 @@ export function updateAllInCollection<T>(collection: string, data: T) {
   return fauna.Map(
     fauna.Paginate(fauna.Documents(fauna.Collection(collection))),
     fauna.Lambda(
-      'ref',
-      fauna.Update(fauna.Var('ref'), {
+      "ref",
+      fauna.Update(fauna.Var("ref"), {
         data,
       })
     )

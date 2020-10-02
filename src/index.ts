@@ -1,8 +1,8 @@
-import { Client, Expr, query as fQL } from 'faunadb';
-import { WithRef, CallerReturnType, KeyFromSecret } from './types';
+import {Client, Expr, query as fQL} from "faunadb";
+import {WithRef, CallerReturnType, KeyFromSecret} from "./types";
 
 export async function createClient(secret: string) {
-  const raw = new Client({ secret });
+  const raw = new Client({secret});
   const call = createCaller(raw);
   let keyInfo;
 
@@ -36,7 +36,7 @@ export function createCaller(client: Client) {
 }
 
 export function getIdFromRef(item: any) {
-  return item.ref?.value?.id ?? item.ref['@ref']?.id ?? '';
+  return item.ref?.value?.id ?? item.ref["@ref"]?.id ?? "";
 }
 
 export function payloadWithId<T>(item: WithRef<T>) {
@@ -46,8 +46,8 @@ export function payloadWithId<T>(item: WithRef<T>) {
   };
 }
 
-export { fQL };
-export * from './collection';
-export * from './indexes';
-export * from './types';
-export * from './user';
+export {fQL};
+export * from "./collection";
+export * from "./indexes";
+export * from "./types";
+export * from "./user";

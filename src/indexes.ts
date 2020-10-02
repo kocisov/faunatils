@@ -1,5 +1,5 @@
-import { query as fauna, ExprArg } from 'faunadb';
-import { IndexTermOrValue } from './types';
+import {query as fauna, ExprArg} from "faunadb";
+import {IndexTermOrValue} from "./types";
 
 export function getByIndex(index: string, ...terms: ExprArg[]) {
   return fauna.Get(fauna.Match(fauna.Index(index), ...terms));
@@ -8,7 +8,7 @@ export function getByIndex(index: string, ...terms: ExprArg[]) {
 export function getAllByIndex(index: string, ...terms: ExprArg[]) {
   return fauna.Map(
     fauna.Paginate(fauna.Match(fauna.Index(index), ...terms)),
-    fauna.Lambda('ref', fauna.Get(fauna.Var('ref')))
+    fauna.Lambda("ref", fauna.Get(fauna.Var("ref")))
   );
 }
 

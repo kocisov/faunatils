@@ -1,4 +1,4 @@
-import { Client, Expr } from 'faunadb';
+import {Client, Expr} from "faunadb";
 
 export type RefID = string | number;
 
@@ -13,7 +13,7 @@ export type Collection = {
     id: string;
     collection: {
       value: {
-        id: 'collections';
+        id: "collections";
       };
     };
     database: {
@@ -27,7 +27,7 @@ export type Database = {
     id: string;
     collection: {
       value: {
-        id: 'databases';
+        id: "databases";
       };
     };
     database?: {
@@ -39,7 +39,7 @@ export type Database = {
 };
 
 export type ResponseFaunaRef = {
-  '@ref': {
+  "@ref": {
     id: RefID;
     collection: Collection;
     ts?: number;
@@ -64,7 +64,7 @@ export type WithRef<T> = {
   ts: number;
 };
 
-export type Roles = 'server' | 'admin';
+export type Roles = "server" | "admin";
 
 export type KeyFromSecret = {
   database?: Database;
