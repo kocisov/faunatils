@@ -1,4 +1,4 @@
-import { query as fauna } from 'faunadb';
+import {query as fauna} from "faunadb";
 
 export function createUserInCollection<T>(
   collection: string,
