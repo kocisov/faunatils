@@ -1,12 +1,4 @@
-import {Client, Expr} from "faunadb";
-
 export type RefID = string | number;
-
-export type FaunatilsClientObject = {
-  raw: Client;
-  keyInfo: KeyFromSecret | string | null;
-  call<T>(expression: Expr): Promise<CallerReturnType<T>>;
-};
 
 export type Collection = {
   value: {
@@ -38,12 +30,18 @@ export type Database = {
   };
 };
 
-export type ResponseFaunaRef = {
-  "@ref": {
-    id: RefID;
-    collection: Collection;
-    ts?: number;
-  };
+export type CallerReturnType<T> = [Error | null, T | null];
+
+export type IndexTermOrValue = {
+  field: string[];
+};
+
+export type CreateIndexOptions = {
+  name: string;
+  collection: string;
+  terms?: IndexTermOrValue[];
+  values?: IndexTermOrValue[];
+  unique: boolean;
 };
 
 export type FaunaRef = {
@@ -54,24 +52,8 @@ export type FaunaRef = {
   };
 };
 
-export type IndexTermOrValue = {
-  field: string[];
-};
-
 export type WithRef<T> = {
   data: T;
   ref: FaunaRef;
   ts: number;
 };
-
-export type Roles = "server" | "admin";
-
-export type KeyFromSecret = {
-  database?: Database;
-  hashed_secret: string;
-  ref: FaunaRef;
-  role: Roles;
-  ts: number;
-};
-
-export type CallerReturnType<T> = [Error | null, T | null];

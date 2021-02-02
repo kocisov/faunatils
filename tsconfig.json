@@ -1,5 +1,4 @@
 {
-  "include": ["src", "types"],
   "compilerOptions": {
     "module": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -10,10 +9,12 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "downlevelIteration": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "Node",
-    "jsx": "react",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declarationDir": "dist"
   }
 }
