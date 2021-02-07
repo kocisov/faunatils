@@ -1,7 +1,9 @@
 import {WithRef} from "./types";
 
-export const getIdFromResponse = <T>(response: WithRef<T>) =>
-  response.ref.value.id;
+export function getIdFromResponse<T>(response: WithRef<T>) {
+  return response?.ref?.value?.id ?? null;
+}
 
-export const getIdFromBlock = (item: any) =>
-  item.ref?.value?.id ?? item.ref["@ref"]?.id ?? "";
+export function getIdFromBlock(item: any) {
+  return item.ref?.value?.id ?? item.ref?.["@ref"]?.id ?? null;
+}

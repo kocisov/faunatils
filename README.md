@@ -6,15 +6,13 @@
 
 ```bash
 $ npm install faunatils
-# or
-$ yarn add faunatils
 ```
 
 ## Usage
 
 ```ts
 import {Client} from "faunadb";
-import {getByIndex, WithRef} from "faunatils";
+import {getByIndex, createCaller, WithRef} from "faunatils";
 
 type Item = {
   color: string;
@@ -22,14 +20,20 @@ type Item = {
   price: number;
 };
 
-async function handler() {
-  const client = new Client({
-    secret: process.env.FAUNA_KEY,
-  });
+const client = new Client({
+  secret: process.env.FAUNA_KEY,
+});
 
-  const item = await client.query<WithRef<Item>>(
-    getByIndex("itemByColor", "red"),
+const call = createCaller(client);
+
+async function getItemNameAndPriceByColor(color: string) {
+  let [item, error] = await call<WithRef<Item>>(
+    getByIndex("itemByColor", color),
   );
+
+  if (error) {
+    return null;
+  }
 
   return `${item?.data?.name} $${item?.data?.price}`;
 }

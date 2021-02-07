@@ -1,49 +1,66 @@
 import {query} from "faunadb";
 import {RefID} from "./types";
 
-export const refInCollection = (ref: RefID, collection: string) =>
-  query.Ref(query.Collection(collection), ref);
+export function refInCollection(ref: RefID, collection: string) {
+  return query.Ref(query.Collection(collection), ref);
+}
 
-export const createCollection = (name: string) =>
-  query.CreateCollection({name});
+export function createCollection(name: string) {
+  return query.CreateCollection({name});
+}
 
-export const createInCollection = <T>(collection: string, data: T) =>
-  query.Create(query.Collection(collection), {
+export function createInCollection<T>(collection: string, data: T) {
+  return query.Create(query.Collection(collection), {
     data,
   });
+}
 
-export const getAllInCollection = (collection: string) =>
-  query.Map(
+export function getAllInCollection(collection: string) {
+  return query.Map(
     query.Paginate(query.Documents(query.Collection(collection))),
     query.Lambda("ref", query.Get(query.Var("ref"))),
   );
+}
 
-export const getInCollectionByRef = (collection: string, ref: RefID) =>
-  query.Get(refInCollection(ref, collection));
+export function getInCollectionByRef(collection: string, ref: RefID) {
+  return query.Get(refInCollection(ref, collection));
+}
 
-export const deleteInCollectionByRef = (collection: string, ref: RefID) =>
-  query.Delete(refInCollection(ref, collection));
+export function deleteInCollectionByRef(collection: string, ref: RefID) {
+  return query.Delete(refInCollection(ref, collection));
+}
 
-export const updateInCollectionByRef = <T>(
+export function deleteAllInCollection(collection: string) {
+  return query.Map(
+    query.Paginate(query.Documents(query.Collection(collection)), {
+      size: 99999,
+    }),
+    query.Lambda(["ref"], query.Delete(query.Var("ref"))),
+  );
+}
+
+export function updateInCollectionByRef<T>(
   collection: string,
   ref: RefID,
   data: T,
-) =>
-  query.Update(refInCollection(ref, collection), {
+) {
+  return query.Update(refInCollection(ref, collection), {
     data,
   });
+}
 
-export const replaceInCollectionByRef = <T>(
+export function replaceInCollectionByRef<T>(
   collection: string,
   ref: RefID,
   data: T,
-) =>
-  query.Replace(refInCollection(ref, collection), {
+) {
+  return query.Replace(refInCollection(ref, collection), {
     data,
   });
+}
 
-export const updateAllInCollection = <T>(collection: string, data: T) =>
-  query.Map(
+export function updateAllInCollection<T>(collection: string, data: T) {
+  return query.Map(
     query.Paginate(query.Documents(query.Collection(collection))),
     query.Lambda(
       "ref",
@@ -52,3 +69,4 @@ export const updateAllInCollection = <T>(collection: string, data: T) =>
       }),
     ),
   );
+}
